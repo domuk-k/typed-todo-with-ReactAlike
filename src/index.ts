@@ -1,11 +1,20 @@
-/**
- * This file is just a silly example to show everything working in the browser.
- * When you're ready to start on your site, clear the file. Happy hacking!
- **/
+import App from './App';
 
-import confetti from 'canvas-confetti';
+render(createElement(App, null, 'wow'), document.getElementById('root'));
 
-confetti.create(document.getElementById('canvas') as HTMLCanvasElement, {
-  resize: true,
-  useWorker: true,
-})({ particleCount: 200, spread: 200 });
+function render(vnode: any, container: HTMLElement) {
+  container.append(makeElementOf(vnode));
+}
+
+function createElement(type, props, ...children) {
+  const vnode = new type(props).render();
+
+  return vnode;
+}
+
+function makeElementOf(vnode) {
+  const elem = document.createElement(vnode.type);
+  elem.append(...vnode.children);
+
+  return elem;
+}
