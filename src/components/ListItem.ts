@@ -12,15 +12,22 @@ export class ListItem extends Component {
   constructor(props: IProps) {
     super(props);
     this.props = props;
-    console.log(this.props);
   }
 
   render() {
     const { id, content, completed } = this.props.todo;
     return createVnode(
       'li',
-      null,
+      { id },
+      createVnode(
+        'label',
+        {
+          for: `ck-${id}`,
+        },
+        createVnode('div', { className: 'todo-label' }),
+      ),
       createVnode('input', {
+        id: `ck-${id}`,
         type: 'checkbox',
         checked: completed,
       }),
