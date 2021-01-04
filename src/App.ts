@@ -1,30 +1,34 @@
-export class Component<T, U> {
-  state: U;
-  constructor(private props: T) {}
-}
+import { createVnode } from './lib';
+import Header from './components/Header';
+import { Main } from './components/Main';
+import { Component } from './lib/types';
+import type { Todo } from './model';
+import mockUpData from './mockUps';
 
 interface IProps {}
-interface IState {}
+interface IState {
+  loading: boolean;
+  todos: Todo[];
+}
 
-class App extends Component<IProps, IState> {
-  private globalState = {};
+class App extends Component<IProps> {
+  state: IState;
 
-  li = document.createElement('li');
-  li2 = document.createElement('li');
-
-  constructor(props) {
+  constructor(props: IProps) {
     super(props);
-    this.li.textContent = 'todo1';
-    this.li2.textContent = 'todo2';
+    this.state = {
+      loading: false,
+      todos: mockUpData,
+    };
   }
 
   render() {
-    return {
-      type: 'ul',
-      props: null,
-      children: [this.li2, this.li],
-    };
+    return createVnode(
+      'fragment',
+      null,
+      createVnode(Header, null),
+      createVnode(Main, { todos: this.state.todos }),
+    );
   }
 }
-
 export default App;
