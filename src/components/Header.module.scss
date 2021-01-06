@@ -1,0 +1,16 @@
+@import '../theme/color';
+
+.header {
+  color: $title;
+  text-align: center;
+  padding: 20px 0px;
+
+  div {
+    color: gray;
+  }
+}
+
+.title {
+  font-family: Helvetica, sans-serif;
+  font-size: 3rem;
+}

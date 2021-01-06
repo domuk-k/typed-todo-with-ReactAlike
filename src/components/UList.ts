@@ -1,6 +1,6 @@
 import { Component } from '../lib/types';
 import { createVnode } from '../lib';
-import { ListItem } from './ListItem';
+import { ListItem } from './atom/ListItem';
 import type { Todo } from '../model';
 
 interface IProps {

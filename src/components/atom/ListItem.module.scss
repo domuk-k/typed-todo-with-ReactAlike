@@ -1,0 +1,77 @@
+@import '../../theme/color';
+@import '../../theme/aria.scss';
+
+.listItem {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 1.2rem;
+
+  border-bottom: 1px solid lightgray;
+
+  &:nth-child(1) {
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+  }
+  &:last-child {
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    border: none;
+  }
+
+  &:hover {
+    background-color: rgb(247, 247, 247);
+  }
+  &:hover div.button {
+    display: block;
+  }
+}
+
+.checkbox {
+  display: none;
+  &:checked + label::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 18px;
+    transform: translate3d(0, -50%, 0);
+    width: 10px;
+    height: 10px;
+    background-color: $check;
+  }
+}
+
+.label {
+  flex: 1 0 0;
+  position: relative;
+  vertical-align: baseline;
+  padding: 16px 48px;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 12px;
+    transform: translate3d(0, -50%, 0);
+    width: 20px;
+    height: 20px;
+    background-color: #fff;
+    border: 1px solid #cfdadd;
+  }
+}
+
+.button {
+  width: 16px;
+  height: 16px;
+  margin: 4px 20px;
+  background-image: url(https://image.flaticon.com/icons/png/512/61/61182.png);
+  background-repeat: no-repeat;
+  background-size: contain;
+
+  display: none;
+
+  &::after {
+    content: 'remove todo';
+    @include ariaHidden();
+  }
+}

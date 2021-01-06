@@ -1,8 +1,9 @@
 import { createVnode } from '../lib';
 import { Component } from '../lib/types';
 import type { Todo } from '../model';
-import Input from './Input';
+import Form from './Form';
 import { UList } from './UList';
+import styles from './Main.module.scss';
 
 interface IProps {
   todos: Todo[];
@@ -16,8 +17,8 @@ export class Main extends Component<IProps> {
   render() {
     return createVnode(
       'main',
-      null,
-      createVnode(Input),
+      { className: styles.main },
+      createVnode(Form),
       createVnode(UList, this.props),
     );
   }
