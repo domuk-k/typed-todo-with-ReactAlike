@@ -1,13 +1,15 @@
 import { Component } from '../lib/types';
 import { createVnode } from '../lib';
-import { Title } from './Title';
+import { Title } from './atom/Title';
+import styles from './Header.module.scss';
 
 class Header extends Component {
   render() {
     return createVnode(
       'header',
-      { className: 'todo-header' },
-      createVnode(Title),
+      { className: styles.header },
+      createVnode(Title, { className: styles.title }),
+      createVnode('div', null, 'v.5.0'),
     );
   }
 }
