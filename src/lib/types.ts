@@ -7,7 +7,10 @@ export type Vnode = {
 export type IProps = any;
 
 export abstract class Component<T = IProps> {
-  constructor(props: T) {}
+  props: T;
+  constructor(props: T) {
+    this.props = props;
+  }
   render(): any {}
 }
 

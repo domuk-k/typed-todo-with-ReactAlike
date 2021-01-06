@@ -7,11 +7,8 @@ interface IProps {
 }
 
 export class ListItem extends Component {
-  private props: IProps;
-
   constructor(props: IProps) {
     super(props);
-    this.props = props;
   }
 
   render() {

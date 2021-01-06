@@ -8,10 +8,8 @@ interface IProps {
 }
 
 export class UList extends Component<IProps> {
-  props: IProps;
   constructor(props: IProps) {
     super(props);
-    this.props = props;
   }
 
   render() {

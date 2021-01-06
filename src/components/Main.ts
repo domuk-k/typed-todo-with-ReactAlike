@@ -1,6 +1,6 @@
-import type { Todo } from '../model';
 import { createVnode } from '../lib';
 import { Component } from '../lib/types';
+import type { Todo } from '../model';
 import Input from './Input';
 import { UList } from './UList';
 
@@ -9,10 +9,8 @@ interface IProps {
 }
 
 export class Main extends Component<IProps> {
-  props: IProps;
   constructor(props: IProps) {
     super(props);
-    this.props = props;
   }
 
   render() {
