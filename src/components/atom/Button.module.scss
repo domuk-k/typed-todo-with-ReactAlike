@@ -1,0 +1,19 @@
+@import '../../theme/color';
+
+.primary {
+  background-color: transparent;
+  border-radius: 8px;
+  border: 1px solid currentColor;
+  color: $title;
+  padding: 10px;
+  margin-right: 12px;
+
+  outline: none;
+
+  transition: 0.2s;
+
+  &:hover {
+    color: white;
+    background-color: $title;
+  }
+}

@@ -1,6 +1,6 @@
-import type { SyntheticEvent } from '../model';
-import { createVnode } from '../lib';
-import { Component } from '../lib/types';
+import type { SyntheticEvent } from '../../model';
+import { createVnode } from '../../lib';
+import { Component } from '../../lib/types';
 import styles from './Form.module.scss';
 
 interface IProps {}

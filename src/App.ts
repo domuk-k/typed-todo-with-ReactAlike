@@ -1,6 +1,6 @@
 import { createVnode } from './lib';
-import Header from './components/Header';
-import { Main } from './components/Main';
+import Header from './components/module/Header';
+import { Main } from './components/module/Main';
 import { Component } from './lib/types';
 import type { Todo } from './model';
 import mockUpData from './mockUps';

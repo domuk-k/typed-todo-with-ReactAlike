@@ -1,6 +1,6 @@
-import { Component } from '../lib/types';
-import { createVnode } from '../lib';
-import { Title } from './atom/Title';
+import { Component } from '../../lib/types';
+import { createVnode } from '../../lib';
+import { Title } from '../atom/Title';
 import styles from './Header.module.scss';
 
 class Header extends Component {
