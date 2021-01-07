@@ -1,3 +1,4 @@
+import Modal from '../components/Modal';
 import type { ComponentConstructor, IProps, Vnode } from './types';
 
 export class Renderer {
@@ -10,8 +11,11 @@ export class Renderer {
   }
 
   createModal(textContent: string) {
-    const modal = createVnode('div', { id: 'modal', textContent });
-    this.render(modal, document.getElementById('modal-root'));
+    const modalRoot = document.createElement('div');
+    modalRoot.id = 'modal-root';
+    document.body.append(modalRoot);
+
+    this.render(createVnode(Modal, { id: 'modal', textContent }), modalRoot);
   }
 }
 

@@ -12,7 +12,9 @@ export type IState = any;
 
 export abstract class Component<T = IProps, U = IState> {
   protected state!: U;
-  constructor(readonly props: T) {}
+  constructor(readonly props: T) {
+    this.props = props;
+  }
   render(): any {}
   setState(newState: Pick<U, any>): void {
     this.state = {
