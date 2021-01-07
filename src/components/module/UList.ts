@@ -10,6 +10,8 @@ interface IProps {
 export class UList extends Component<IProps> {
   constructor(props: IProps) {
     super(props);
+
+    if (!this.props.todos.length) this.props.todos = [];
   }
 
   render() {

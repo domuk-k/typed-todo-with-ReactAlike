@@ -3,7 +3,7 @@ import Header from './components/module/Header';
 import { Main } from './components/module/Main';
 import { Component } from './lib/types';
 import type { Todo } from './model';
-import mockUpData from './mockUps';
+import todoService from './model/TodoService';
 
 interface IProps {}
 interface IState {
@@ -11,15 +11,28 @@ interface IState {
   todos: Todo[];
 }
 
-class App extends Component<IProps> {
-  state: IState;
-
+class App extends Component<IProps, IState> {
   constructor(props: IProps) {
     super(props);
     this.state = {
       loading: false,
-      todos: mockUpData,
+      todos: [],
     };
+    // need to implement ComponentDidMount
+    this.getInitialState.call(this);
+  }
+
+  async getInitialState() {
+    const todos = await todoService.fetchTodos();
+
+    if (todos instanceof Error) {
+      this.setState({ ...this.state, todos: [] });
+    }
+
+    this.setState({
+      ...this.state,
+      todos,
+    });
   }
 
   render() {

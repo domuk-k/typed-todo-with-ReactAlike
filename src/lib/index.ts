@@ -1,7 +1,22 @@
+import Modal from '../components/Modal';
 import type { ComponentConstructor, IProps, Vnode } from './types';
 
-export function render(vnode: any, container: HTMLElement | null) {
-  container?.append(makeElementOf(vnode));
+export class Renderer {
+  constructor(private readonly container: HTMLElement | null) {}
+
+  render(rootNode: any, container?: HTMLElement | null) {
+    (this.container as HTMLElement).innerHTML = '';
+    if (container) container?.appendChild(makeElementOf(rootNode));
+    this.container?.appendChild(makeElementOf(rootNode));
+  }
+
+  createModal(textContent: string) {
+    const modalRoot = document.createElement('div');
+    modalRoot.id = 'modal-root';
+    document.body.append(modalRoot);
+
+    this.render(createVnode(Modal, { id: 'modal', textContent }), modalRoot);
+  }
 }
 
 export function createVnode(
@@ -20,10 +35,12 @@ export function createVnode(
       typeof child === 'function' ? new child().render() : child,
     );
   }
+
   return vnode;
 }
 
 type ReillyElemnent = DocumentFragment | HTMLElement;
+
 function makeElementOf(vnode: Vnode) {
   let elem: ReillyElemnent;
 
