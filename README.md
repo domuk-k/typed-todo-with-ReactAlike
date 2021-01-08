@@ -1,18 +1,26 @@
-# New Project
+# Todo - with custom view library.
 
 > ✨ Bootstrapped with Create Snowpack App (CSA).
 
-## Available Scripts
+- ⚛️ JSX없이 사용하는 리액트의 주요함수 `ReactDOM.render`, `React.createElement`, `React.Component`를 간략히 구현하여 사용합니다. - `./src/lib`
+- 🏔 Snowpack으로 빌드합니다.
+- 스타일링을 위해 Sass, CRUD기능을 위해 `json-server`를 사용했습니다.
 
-### npm start
+---
+
+### Reference
+
+- snowpack : [간단한 국문 소개자료](https://heropy.blog/2020/10/31/snowpack/)
+- [React without JSX](https://ko.reactjs.org/docs/react-without-jsx.html)
+
+### Create Snowpack App의 기본 scripts 명세
+
+## npm start
 
 Runs the app in the development mode.
 Open http://localhost:8080 to view it in the browser.
 
-The page will reload if you make edits.
-You will also see any lint errors in the console.
-
-### npm run build
+## npm run build
 
 Builds a static copy of your site to the `build/` folder.
 Your app is ready to be deployed!
