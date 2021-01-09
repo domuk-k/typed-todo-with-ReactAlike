@@ -2,6 +2,8 @@ import type { SyntheticEvent } from '../../model';
 import { createVnode } from '../../lib';
 import { Component } from '../../lib/types';
 import styles from './Form.module.scss';
+import todoService from '../../model/TodoService';
+import Todo from '../../model/Todo';
 
 interface IProps {}
 
@@ -13,8 +15,11 @@ class Form extends Component<IProps> {
 
   inputHandler(e: SyntheticEvent) {
     e.preventDefault();
-    if (!e.target.todoValue.value) return;
-    console.log('Valid now, Yet implemented');
+    const inputValue = e.target.todoValue.value;
+    if (!inputValue) return;
+    // 이렇게 된 이상 리덕스로 간다.;
+    const res = (async () =>
+      await todoService.postTodo(new Todo(inputValue)))();
   }
 
   render() {
