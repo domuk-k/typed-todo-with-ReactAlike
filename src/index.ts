@@ -1,4 +1,10 @@
 import App from './App';
-import { createVnode, render } from './lib';
+import { createVnode, ReillyDOM } from './lib';
+import 'reset.css';
+import './index.scss';
 
-render(createVnode(App, null), document.getElementById('root'));
+export const reillyDOM = new ReillyDOM();
+
+const $root = document.getElementById('root');
+
+reillyDOM.render(createVnode(App, null), $root);

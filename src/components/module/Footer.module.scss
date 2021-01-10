@@ -1,0 +1,15 @@
+.footer {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 16px;
+
+  user-select: none;
+}
+
+.clearCompleted {
+  flex: 1 0 0;
+  width: 100%;
+  text-align: right;
+}
