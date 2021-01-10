@@ -32,10 +32,12 @@ export function createVnode(
 
   if (typeof type === 'function') {
     if (Object.getPrototypeOf(type) === Component) {
-      console.log(Object.getPrototypeOf(type) instanceof Component);
-      return new (type as ComponentConstructor)(props as IProps).render();
+      return new (type as ComponentConstructor)({
+        ...(props as IProps),
+        children,
+      }).render();
     } else {
-      return (type as Function).apply(null, props);
+      return (type as Function).apply(null, [props, children]);
     }
   }
 
