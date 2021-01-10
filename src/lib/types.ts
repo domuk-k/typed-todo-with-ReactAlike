@@ -1,5 +1,4 @@
 import { renderer } from '../index';
-import type { Todo } from '../model';
 
 export type Vnode = {
   type: string | Component;
