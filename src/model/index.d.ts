@@ -1,4 +1,6 @@
 export interface Todo {
+  _updatedAt: any;
+  _createdAt: any;
   id: unknown;
   content: string;
   completed: boolean;
