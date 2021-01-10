@@ -6,6 +6,8 @@ import Checkbox from './CheckBox';
 
 interface IProps {
   todo: Todo;
+  onRemove: () => Promise<void>;
+  onToggle: () => Promise<void>;
 }
 
 export class ListItem extends Component {
@@ -14,7 +16,12 @@ export class ListItem extends Component {
   }
 
   render() {
-    const { id, content, completed } = this.props.todo;
+    const {
+      todo: { id, content, completed },
+      onRemove,
+      onToggle,
+    } = this.props;
+
     return createVnode(
       'li',
       { id, className: styles.listItem },
@@ -22,8 +29,13 @@ export class ListItem extends Component {
         id: `ck-${id}`,
         checked: completed,
         textContent: `${content}`,
+        onToggle: onToggle,
       }),
-      createVnode('div', { 'aria-label': 'button', className: styles.button }),
+      createVnode('div', {
+        'aria-label': 'button',
+        className: styles.button,
+        onclick: onRemove,
+      }),
     );
   }
 }

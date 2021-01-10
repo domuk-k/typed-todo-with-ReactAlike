@@ -1,6 +1,5 @@
 import type { Todo } from './index';
 import axios from 'axios';
-import { renderer } from '../index';
 
 const todoFetcher = axios.create({
   baseURL: 'http://localhost:3000',
@@ -20,9 +19,6 @@ class TodoService {
       });
       return data;
     } catch (error) {
-      renderer.createModal(
-        `네트워크 에러입니다 다시 시도해주세요. 비동기처리 중 이슈에 대한 상태관리와 대응이 중요합니다. 이 고민에서 자연스럽게 redux-saga의 아이디어가 나오는 군요!`,
-      );
       return error;
     }
   }
@@ -45,6 +41,7 @@ class TodoService {
       const { data } = await todoFetcher({
         method: 'PATCH',
         url: `/todos/${payload.id}`,
+        data: payload,
       });
       return data;
     } catch (error) {

@@ -8,6 +8,9 @@ import { Footer } from './Footer';
 
 interface IProps {
   todos: Todo[];
+  onSubmit: () => Promise<void>;
+  onRemove: () => Promise<void>;
+  onToggle: () => Promise<void>;
 }
 
 export class Main extends Component<IProps> {
@@ -16,11 +19,12 @@ export class Main extends Component<IProps> {
   }
 
   render() {
+    const { todos, onSubmit, onRemove, onToggle } = this.props;
     return createVnode(
       'main',
       { className: styles.main },
-      createVnode(Form),
-      createVnode(UList, this.props),
+      createVnode(Form, { onSubmit }),
+      createVnode(UList, { todos, onRemove, onToggle }),
       createVnode(Footer),
     );
   }

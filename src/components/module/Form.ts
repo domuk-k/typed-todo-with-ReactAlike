@@ -2,25 +2,22 @@ import type { SyntheticEvent } from '../../model';
 import { createVnode } from '../../lib';
 import { Component } from '../../lib/types';
 import styles from './Form.module.scss';
+import todoService from '../../model/TodoService';
+import Todo from '../../model/Todo';
 
-interface IProps {}
+interface IProps {
+  onSubmit: () => Promise<void>;
+}
 
 class Form extends Component<IProps> {
   constructor(props: IProps) {
     super(props);
-    this.inputHandler = this.inputHandler.bind(this);
-  }
-
-  inputHandler(e: SyntheticEvent) {
-    e.preventDefault();
-    if (!e.target.todoValue.value) return;
-    console.log('Valid now, Yet implemented');
   }
 
   render() {
     return createVnode(
       'form',
-      { onsubmit: this.inputHandler, className: styles.formTodo },
+      { onsubmit: this.props.onSubmit, className: styles.formTodo },
       createVnode(
         'label',
         {
@@ -30,6 +27,7 @@ class Form extends Component<IProps> {
       ),
       createVnode('input', {
         type: 'text',
+        id: 'todoValue',
         name: 'todoValue',
         autofocus: true,
         autocomplete: 'off',

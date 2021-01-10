@@ -1,33 +1,44 @@
 import Modal from '../components/Modal';
-import type { ComponentConstructor, IProps, Vnode } from './types';
+import { Component, ComponentConstructor, IProps, Vnode } from './types';
 
-export class Renderer {
-  constructor(private readonly container: HTMLElement | null) {}
+type ReillyElement = DocumentFragment | HTMLElement;
 
-  render(rootNode: any, container?: HTMLElement | null) {
-    (this.container as HTMLElement).innerHTML = '';
-    if (container) container?.appendChild(makeElementOf(rootNode));
-    this.container?.appendChild(makeElementOf(rootNode));
+export class ReillyDOM {
+  private readonly root = document.getElementById('root');
+  constructor() {}
+
+  render(rootNode: any, container: HTMLElement | null = this.root) {
+    (container as HTMLElement).innerHTML = '';
+    container?.appendChild(makeElementOf(rootNode));
   }
 
   createModal(textContent: string) {
     const modalRoot = document.createElement('div');
+
     modalRoot.id = 'modal-root';
     document.body.append(modalRoot);
+    console.log('??', modalRoot);
 
     this.render(createVnode(Modal, { id: 'modal', textContent }), modalRoot);
   }
 }
 
 export function createVnode(
-  type: ComponentConstructor | string,
+  type: ComponentConstructor | string | (() => any),
   props?: IProps | null,
   ...children: any[]
 ) {
   let vnode = { type, props, children };
 
   if (typeof type === 'function') {
-    vnode = new type(props as IProps).render();
+    if (Object.getPrototypeOf(type) === Component) {
+      return new (type as ComponentConstructor)({
+        ...(props as IProps),
+        children,
+      }).render();
+    } else {
+      return (type as Function).apply(null, [props, children]);
+    }
   }
 
   if (vnode.children && vnode.children.length) {
@@ -39,10 +50,8 @@ export function createVnode(
   return vnode;
 }
 
-type ReillyElemnent = DocumentFragment | HTMLElement;
-
 function makeElementOf(vnode: Vnode) {
-  let elem: ReillyElemnent;
+  let elem: ReillyElement;
 
   if (vnode.type === 'fragment') {
     elem = document.createDocumentFragment();
@@ -57,12 +66,9 @@ function makeElementOf(vnode: Vnode) {
 
   if (vnode.children && vnode.children.length) {
     vnode.children.forEach((child: any) => {
-      if (typeof child === 'object') {
-        elem.appendChild(makeElementOf(child));
-      }
-      if (typeof child === 'string') {
+      if (typeof child === 'object') elem.appendChild(makeElementOf(child));
+      if (typeof child === 'string')
         elem.appendChild(document.createTextNode(child));
-      }
     });
   }
 
