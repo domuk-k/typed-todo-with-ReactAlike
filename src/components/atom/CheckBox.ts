@@ -6,6 +6,7 @@ interface IProps {
   id: string;
   checked: boolean;
   textContent: string;
+  onToggle: () => Promise<void>;
 }
 
 class Checkbox extends Component<IProps> {
@@ -14,7 +15,7 @@ class Checkbox extends Component<IProps> {
   }
 
   render() {
-    const { id, checked, textContent } = this.props;
+    const { id, checked, textContent, onToggle } = this.props;
 
     return createVnode(
       'fragment',
@@ -24,6 +25,7 @@ class Checkbox extends Component<IProps> {
         id,
         className: styles.checkbox,
         checked,
+        onchange: onToggle,
       }),
       createVnode('label', {
         type: 'checkbox',

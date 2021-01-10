@@ -2,9 +2,12 @@ import { Component } from '../../lib/types';
 import { createVnode } from '../../lib';
 import { ListItem } from '../atom/ListItem';
 import type { Todo } from '../../model';
+import { compareDate } from '../../utils';
 
 interface IProps {
   todos: Todo[];
+  onRemove: () => Promise<void>;
+  onToggle: () => Promise<void>;
 }
 
 export class UList extends Component<IProps> {
@@ -15,10 +18,17 @@ export class UList extends Component<IProps> {
   }
 
   render() {
+    if (!this.props.todos.length) return 'nothing yet, add some tasks';
+
+    const { todos, onRemove, onToggle } = this.props;
+    console.log(todos);
+
     return createVnode(
       'ul',
       null,
-      ...this.props.todos.map((todo) => createVnode(ListItem, { todo })),
+      ...[...todos.sort(compareDate)].map((todo) =>
+        createVnode(ListItem, { todo, onRemove, onToggle }),
+      ),
     );
   }
 }

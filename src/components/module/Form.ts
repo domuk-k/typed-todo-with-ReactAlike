@@ -5,27 +5,19 @@ import styles from './Form.module.scss';
 import todoService from '../../model/TodoService';
 import Todo from '../../model/Todo';
 
-interface IProps {}
+interface IProps {
+  onSubmit: () => Promise<void>;
+}
 
 class Form extends Component<IProps> {
   constructor(props: IProps) {
     super(props);
-    this.inputHandler = this.inputHandler.bind(this);
-  }
-
-  inputHandler(e: SyntheticEvent) {
-    e.preventDefault();
-    const inputValue = e.target.todoValue.value;
-    if (!inputValue) return;
-    // 이렇게 된 이상 리덕스로 간다.;
-    const res = (async () =>
-      await todoService.postTodo(new Todo(inputValue)))();
   }
 
   render() {
     return createVnode(
       'form',
-      { onsubmit: this.inputHandler, className: styles.formTodo },
+      { onsubmit: this.props.onSubmit, className: styles.formTodo },
       createVnode(
         'label',
         {
@@ -35,6 +27,7 @@ class Form extends Component<IProps> {
       ),
       createVnode('input', {
         type: 'text',
+        id: 'todoValue',
         name: 'todoValue',
         autofocus: true,
         autocomplete: 'off',
