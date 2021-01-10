@@ -1,30 +1,25 @@
 {
   "todos": [
     {
-      "content": "tyoescript",
-      "id": "38508792-74ef-4189-b4ce-28335df6b9da",
-      "_createdAt": "2021-01-08T10:32:26.249Z",
-      "_updatedAt": "2021-01-08T10:32:26.249Z",
+      "content": "Typescript",
+      "id": "8b238a7e-ffd6-4488-baef-30337c5d6798",
+      "_createdAt": "2021-01-10T06:30:16.947Z",
+      "_updatedAt": "2021-01-10T06:30:16.947Z",
       "completed": false
     },
     {
-      "content": "scss",
-      "id": "4ba38f68-71a6-4782-aac7-48be64e73f48",
-      "_createdAt": "2021-01-08T10:32:28.494Z",
-      "_updatedAt": "2021-01-08T10:32:28.494Z",
+      "content": "Javascript",
+      "id": "bd14ada8-6bfe-45a6-8782-0e40db0e192a",
+      "_createdAt": "2021-01-10T06:31:56.178Z",
+      "_updatedAt": "2021-01-10T06:31:56.178Z",
       "completed": false
     },
     {
-      "content": "fds18",
-      "id": "d7c044e4-df8b-45ef-aef9-099173d4c426",
-      "_createdAt": "2021-01-08T10:32:33.044Z",
-      "_updatedAt": "2021-01-08T10:32:33.044Z",
+      "content": "VueJS",
+      "id": "f4f5f5a8-d314-4fea-93c5-8bb5084df43e",
+      "_createdAt": "2021-01-10T07:38:26.626Z",
+      "_updatedAt": "2021-01-10T07:38:26.626Z",
       "completed": false
-    },
-    {
-      "id": "123",
-      "content": "TS",
-      "completed": true
     }
   ]
 }
