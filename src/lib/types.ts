@@ -1,4 +1,4 @@
-import { renderer } from '../index';
+import { reillyDOM } from '../index';
 
 export type Vnode = {
   type: string | Component;
@@ -20,7 +20,7 @@ export abstract class Component<T = IProps, U = IState> {
       ...this.state,
       ...newState,
     };
-    renderer.render(this.render());
+    reillyDOM.render(this.render());
   }
 }
 
